@@ -78,15 +78,14 @@ h1,h2,h3,h4,h5,h6{
     align-items: center;
     justify-content: space-between;
     .header_left{
-      h1{
-      }
+      
     }
   
     .header_menu{
       position: fixed;
       top: 0;
-      right: 0;
-      display: none;
+      right: -100%;
+      // display: none;
       width: 100vw;
       height: 100vh;
       background-color: rgba(0,0,0,0.5);
@@ -126,8 +125,8 @@ h1,h2,h3,h4,h5,h6{
         }
       }
       &.active{
-        display: block;
-        // right: 0;
+        // display: block;
+        right: 0;
       }
     }
   

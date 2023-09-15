@@ -69,8 +69,7 @@ h1, h2, h3, h4, h5, h6 {
 .header .header_wrap .header_menu {
   position: fixed;
   top: 0;
-  right: 0;
-  display: none;
+  right: -100%;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
@@ -109,7 +108,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 .header .header_wrap .header_menu.active {
-  display: block;
+  right: 0;
 }
 .header .header_wrap .header_right {
   /*ハンバーガーボタン*/
