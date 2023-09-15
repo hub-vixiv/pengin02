@@ -1,0 +1,688 @@
+@charset "utf-8";
+
+/*
+Theme Name:Tomomi-01
+Author: Office Niko
+Version 1.0.1
+*/
+
+/*--------------------
+Base
+----------------------*/
+$key_color: #000 ; /*example nav's background-color*/
+$bg_color: #f0f0f0 ; /*example button's background-dolor*/
+$font_color: #333 ; /*example button's font color*/
+$font_color2: #fff ; /*example button's point color*/
+
+$bp_m : 767px;    /* m = mobile */
+$bp_t : 768px;    /* t = tablet */
+$bp_pc: 1100px;
+
+/* media mixin */
+/* ＰＣファースト 指定以下に適用 */
+@mixin media_tab(){
+  @media screen and (max-width: $bp_pc){
+    @content;
+  }
+}
+@mixin media_m(){
+  @media screen and (max-width: $bp_m){
+    @content;
+  }
+}
+
+*, *::before, *::after{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  scroll-behavior: smooth;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Montserrat','YuGothic',serif;
+  color: $font_color;
+}
+a{
+  text-decoration: none;
+  color: $font_color;
+}
+
+li{
+  list-style: none;
+  list-style-position: inside;
+}
+img{
+  max-width: 100%;
+  vertical-align: bottom;
+}
+h1,h2,h3,h4,h5,h6{
+  text-align: center;
+}
+
+.header{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 30;
+  &.fixed{
+    position: fixed;
+    background-color: #222;
+  }
+  .header_wrap{
+    width: calc(100vw - 20px);
+    padding: 0 30px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .header_left{
+      h1{
+      }
+    }
+  
+    .header_menu{
+      position: fixed;
+      top: 0;
+      right: 0;
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      .nav{
+        position: absolute;
+        top: 0;
+        right: -520px;
+        width: 520px;
+        height: 100vh;
+        background-color: #222;
+        transition: 1s;
+        &.active{
+          right: 0;
+
+        }
+        ul{
+          padding-top: 180px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          li{
+            text-align: center;
+            margin-bottom: 30px;
+            &:last-of-type{
+              margin-bottom: 0;
+            }
+          }
+          a{
+            display: block;
+            width: 100%;
+            font-size: 20px;
+            font-weight: 800;
+            color: $font_color2;
+          }
+        }
+      }
+      &.active{
+        display: block;
+        // right: 0;
+      }
+    }
+  
+    .header_right{
+    /*ハンバーガーボタン*/
+    .open_btn{
+      position: relative;/*ボタン内側の基点となるためrelativeを指定*/
+      color:$font_color2;
+      cursor: pointer;
+      width: 50px;
+      height:50px;
+      border-radius: 5px;
+      margin-right: 2vw;
+  
+    }
+    /*ボタン内側*/
+    .open_btn span{
+      display: inline-block;
+      transition: all .4s;/*アニメーションの設定*/
+      position: absolute;
+      left: 14px;
+      height: 2px;
+      border-radius: 5px;
+      background: $font_color2;
+      width: 45%;
+      }
+    .open_btn span:nth-of-type(1) {
+      top:13px;
+    }
+    .open_btn span:nth-of-type(2) {
+      top:19px;
+    }
+    .open_btn span:nth-of-type(3) {
+      top:25px;
+    }
+    .open_btn span:nth-of-type(3)::after {
+      content:"Menu";/*3つ目の要素のafterにMenu表示を指定*/
+      position: absolute;
+      top:5px;
+      left:-2px;
+      color: $font_color2;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+    }
+    /*activeクラスが付与されると線が回転して×になり、Menu⇒Closeに変更*/
+    .open_btn.active span:nth-of-type(1) {
+      top: 14px;
+      left: 18px;
+      transform: translateY(6px) rotate(-45deg);
+      width: 30%;
+    }
+    .open_btn.active span:nth-of-type(2) {
+      opacity: 0;
+    }
+    .open_btn.active span:nth-of-type(3){
+      top: 26px;
+      left: 18px;
+      transform: translateY(-6px) rotate(45deg);
+      width: 30%;
+    }
+    .open_btn.active span:nth-of-type(3)::after {
+      content:"Close";/*3つ目の要素のafterにClose表示を指定*/
+      transform: translateY(0) rotate(-45deg);
+      top:5px;
+      left:4px;
+    }
+    }
+
+  }
+}
+/*--------------------
+共通設定
+----------------------*/
+.title{
+  margin-bottom: 30px;
+  font-size: 32px;
+  font-weight: 800;
+  text-align: left;
+}
+.more_btn{
+  display: inline-block;
+  margin: 30px 0;
+  width: 160px;
+  line-height: 36px;
+  background-color: $key_color;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: $font_color2;
+}
+.wrap{
+  width: 1100px;
+  margin: 0 auto;
+}
+
+
+
+main{
+  width: 100%;
+  /*--------------------
+  ファーストビュー
+  ----------------------*/
+  .fv{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    .fv_photo{
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 15;
+      width: 76vw;
+      height: 82vh;
+      background-color: #000;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.8;
+      }
+    }
+    .fv_black{
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 10;
+      width: 51vw;
+      height: 100vh;
+      background-color: #000;
+    }
+    .fv_letter{
+      position: absolute;
+      bottom: 200px;
+      right: 15vw;
+      z-index: 20;
+      color: $font_color2;
+      .fv_copy_ja{
+        font-family: 'YuGothic';
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .fv_inc{
+        font-family: 'Montserrat';
+        font-size: 20px;
+        font-weight: 500;
+      }
+      .fv_copy_en{
+        font-size: 72px;
+        font-weight: 800;
+  
+      }
+
+    }
+  }
+
+  /*--------------------
+  about
+  ----------------------*/
+  .about{
+    padding-top: 120px;
+    .about_img_wrap{
+      position: relative;
+      margin: 0 auto;
+      img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .about_us_wrap{
+        position: absolute;
+        left: 50px;
+        bottom: 110px;
+        background-color: $font_color2;
+        padding: 50px;
+        padding-left: 30px;
+        width: 590px;
+        height: 390px;
+        .about_us_text{
+          margin-bottom: 30px;
+          font-size: 16px;
+          width: 90%;
+        }
+      }
+    }
+    .works_culture_container{
+      background-color: $bg_color;
+      margin-top: -100px;
+      padding-top: 180px;
+      height: 770px;
+      
+      .works_culture_wrap{
+        // margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+
+
+        .works_wrap,.culture_wrap{
+          width: 520px;
+          height: 530px;
+          .content_img{
+            width: 520px;
+            height: 350px;
+            img{
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .content_text{
+            padding: 30px 0  0;
+            font-family: 'Montserrat','YuGothic'
+  
+          }
+        }
+  
+        .culture_wrap{
+  
+        }
+      }
+    }
+  }
+
+  /*--------------------
+  topics
+  ----------------------*/
+  .topics{
+    margin: 0 auto;
+    padding: 60px 0;
+    dl{
+      margin-left: 400px;
+
+      // margin-bottom: 128px;
+      dt{
+        font-size: 10px;
+        font-weight: bold;
+        color: #cecece;
+
+      }
+      dd{
+        margin: 10px 0;
+        width: 700px;
+        border-bottom: 1px solid #ddd;
+        font-family: 'YuGothic';
+        font-size: 14px;
+        font-weight: bold;
+        
+      }
+    }
+    .btn_right{
+      text-align: right;
+    }
+
+
+  }
+
+  /*--------------------
+  contact
+  ----------------------*/
+  .contact{
+    background-color: $bg_color;
+    padding: 60px 0 120px;
+    .contact_contents_wrap{
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .contact_content{
+        width: 450px;
+        .content_text{
+          // width: 100%;
+          font-family: 'YuGothic';
+          font-size: 16px;
+        }
+      }
+      .content_img{
+        width: 580px;
+        height: 390px;
+        img{
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+      }
+    }
+  }
+
+}
+
+.footer{
+  .footer_copy{
+    background-color: #525252;
+    line-height: 50px;
+    text-align: center;
+    font-size: 10px;
+    color: $font_color2;
+  }
+}
+
+/*--------------------
+タブレット用
+----------------------*/
+@include media_tab(){
+
+  /*--------------------
+共通設定
+----------------------*/
+.wrap{
+  width: 80vw;
+}
+  
+
+  main{
+    width: 100%;
+    /*--------------------
+    ファーストビュー
+    ----------------------*/
+    .fv{
+      .fv_photo{
+        width: 78vw;
+      }
+      .fv_black{
+        width: 73vw;
+      }
+      .fv_letter{
+        bottom: 45%;
+        .fv_copy_ja{
+          font-size: 16px;
+        }
+        .fv_inc{
+          font-size: 16px;
+        }
+        .fv_copy_en{
+          font-size: 56px;
+        }
+      }
+    }
+  
+    /*--------------------
+    about
+    ----------------------*/
+    .about{
+      padding-top: 80px;
+      .about_img_wrap{
+        width: 100%;
+        height: 62vw;
+  
+        .about_us_wrap{
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 40px;
+          width: 70vw;
+          .about_us_text{
+            margin-bottom: 30px;
+            width: 90%;
+          }
+        }
+      }
+      .works_culture_container{
+        margin-top: 0px;
+        padding: 60px 0;
+        height: auto;
+        
+        .works_culture_wrap{
+          flex-direction: column;
+          align-items: unset;
+          gap: 80px;
+        
+            .content_text{
+              padding: 30px 0  0;
+              font-family: 'YuGothic';
+            }
+          }
+        }
+      }
+    
+  
+    /*--------------------
+    topics
+    ----------------------*/
+    .topics{
+
+      dl{
+        margin-left: unset;
+      }
+      .btn_right{
+        text-align: unset;
+      }
+    }
+  
+    /*--------------------
+    contact
+    ----------------------*/
+    .contact{
+      .contact_contents_wrap{
+        flex-direction: column-reverse;
+        align-items: unset;
+        .contact_content{
+          // width: 100%;
+          .content_text{
+          }
+        }
+        .content_img{
+          margin-bottom: 30px;
+          width: 520px;
+          height: 350px;
+          img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+  
+        }
+      }
+    }
+  }
+  
+  .footer{
+    .footer_copy{
+    }
+  }
+}
+
+/*--------------------
+スマホ用
+----------------------*/
+@include media_m(){
+    /*--------------------
+共通設定
+----------------------*/
+
+.wrap{
+  width: 90vw;
+}
+
+.header_menu{
+  .nav{
+    right: -320px;
+    width: 320px;
+    &.active{
+      right: 0;
+
+    }
+      a{
+        display: block;
+        width: 100%;
+        font-size: 20px;
+        font-weight: 800;
+        color: $font_color2;
+      }
+    }
+  }
+  
+
+
+  main{
+    width: 100%;
+    /*--------------------
+    ファーストビュー
+    ----------------------*/
+    .fv{
+      .fv_letter{
+        bottom: 20%;
+      }
+    }
+  
+    /*--------------------
+    about
+    ----------------------*/
+    .about{
+      padding-top: 80px;
+      .about_img_wrap{
+        width: 100%;
+        height: 100vw;
+  
+        .about_us_wrap{
+          padding: 40px 20px;
+          width: 90vw;
+          .about_us_text{
+            width: 90%;
+            font-size: 14px;
+          }
+        }
+      }
+      .works_culture_container{
+        padding: 60px 0;
+        height: auto;
+        
+        .works_culture_wrap{
+          width: 90vw;
+          margin: 0 5vw;
+          .works_wrap, .culture_wrap{
+            width: 100%;
+
+            .content_img{
+              width: 100%;
+            }
+          }
+            .content_text{
+              padding: 30px 0  0;
+            }
+          }
+        }
+      }
+    
+  
+    /*--------------------
+    topics
+    ----------------------*/
+    .topics{
+
+      dl{
+        margin-left: unset;
+        width: 90vw;
+        dd{
+          width: 100%;
+          font-size: 12px;
+        }
+      }
+      .btn_right{
+        text-align: unset;
+      }
+    }
+  
+    /*--------------------
+    contact
+    ----------------------*/
+    .contact{
+      padding-bottom: 100px;
+      .contact_contents_wrap{
+        flex-direction: column-reverse;
+        align-items: unset;
+        .contact_content{
+          width: 100%;
+          .content_text{
+          }
+        }
+        .content_img{
+          margin-bottom: 30px;
+          width: 90vw;
+        }
+        .content_text{
+          width: 90vw;
+        }
+      }
+    }
+  }
+  
+  .footer{
+    .footer_copy{
+    }
+  }
+}
+
