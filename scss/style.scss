@@ -84,8 +84,7 @@ h1,h2,h3,h4,h5,h6{
     .header_menu{
       position: fixed;
       top: 0;
-      right: -100%;
-      // display: none;
+      right: -120%;
       width: 100vw;
       height: 100vh;
       background-color: rgba(0,0,0,0.5);
@@ -125,7 +124,6 @@ h1,h2,h3,h4,h5,h6{
         }
       }
       &.active{
-        // display: block;
         right: 0;
       }
     }

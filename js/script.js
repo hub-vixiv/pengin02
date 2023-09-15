@@ -1,16 +1,17 @@
 //バーガーボタンの表示・非表示
 $(function() {
-  $('.open_btn').on('click',function(){// .menuをクリックすると〜
-      $('.open_btn').toggleClass('active');// .menuにcloseというクラスが追加される
-      $('.header_menu').toggleClass('active');// .menuにcloseというクラスが追加される
-      $('.nav').toggleClass('active');// .menuにcloseというクラスが追加される
+  $('.open_btn').on('click',function(){
+      $('.open_btn').toggleClass('active');
+      $('.header_menu').toggleClass('active');
+      $('.nav').toggleClass('active');
     });
   });
-
-//jq 出てきたメニューをクリックした時
-$('nav a').click(function(){
-  $('nav').toggleClass('active');
-  $('.header_menu').toggleClass('active');// .menuにcloseというクラスが追加される
+  
+  //jq 出てきたメニューをクリックした時
+  $('nav a').click(function(){
+    $('nav').toggleClass('active');
+    $('.header_menu').toggleClass('active');
+    $('.open_btn').toggleClass('active');
 });
 
  //ヘッダーを途中で表示
