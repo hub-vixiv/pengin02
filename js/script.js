@@ -21,7 +21,7 @@ $(function() {
   var windowHeight = $(window).height()
   //スクロールしてファーストビューを過ぎたらメニューを表示
   $(window).on('load scroll', function(){
-    if($(this).scrollTop() > windowHeight-50) {
+    if($(this).scrollTop() > windowHeight-150) {
       header.addClass('fixed');
     }else{
       header.removeClass('fixed');
