@@ -6,10 +6,10 @@ $(function() {
       $('.nav').toggleClass('active');
     });
   });
-  
+
   //jq 出てきたメニューをクリックした時
   $('nav a').click(function(){
-    $('nav').toggleClass('active');
+    $('.nav').toggleClass('active');
     $('.header_menu').toggleClass('active');
     $('.open_btn').toggleClass('active');
 });
@@ -21,7 +21,7 @@ $(function() {
   var windowHeight = $(window).height()
   //スクロールしてファーストビューを過ぎたらメニューを表示
   $(window).on('load scroll', function(){
-    if($(this).scrollTop() > windowHeight) {
+    if($(this).scrollTop() > windowHeight-50) {
       header.addClass('fixed');
     }else{
       header.removeClass('fixed');

@@ -62,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #222;
 }
 .header .header_wrap {
-  width: calc(100vw - 15px);
+  width: calc(100vw - 20px);
   padding: 0 30px;
   margin: 0 auto;
   display: flex;
@@ -72,20 +72,19 @@ h1, h2, h3, h4, h5, h6 {
 .header .header_wrap .header_menu {
   position: fixed;
   top: 0;
-  right: -100%;
+  right: -100vw;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
 }
 .header .header_wrap .header_menu .nav {
-  position: absolute;
+  position: fixed;
   top: 0;
-  right: -100%;
+  right: -520px;
   width: 520px;
   height: 100vh;
   background-color: #222;
-  transition: 1s;
+  transition: all 1s;
 }
 .header .header_wrap .header_menu .nav.active {
   right: 0;
@@ -96,7 +95,6 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: 1s;
 }
 .header .header_wrap .header_menu .nav ul li {
   text-align: center;
@@ -112,8 +110,26 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 800;
   color: #fff;
 }
-.header .header_wrap .header_menu.active {
+.header .header_wrap .header_menu .nav ul a span {
+  position: relative;
   display: block;
+  color: #000;
+  font-size: 42px;
+}
+.header .header_wrap .header_menu .nav ul a span::before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  top: 11px;
+  left: -8px;
+  z-index: -1;
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  border-radius: 50%;
+}
+.header .header_wrap .header_menu.active {
+  right: 0;
 }
 .header .header_wrap .header_right {
   /*ハンバーガーボタン*/

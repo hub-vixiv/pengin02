@@ -84,21 +84,20 @@ h1,h2,h3,h4,h5,h6{
     .header_menu{
       position: fixed;
       top: 0;
-      right: -120%;
+      right: -100vw;
       width: 100vw;
       height: 100vh;
       background-color: rgba(0,0,0,0.5);
       .nav{
-        position: absolute;
+        position: fixed;
         top: 0;
         right: -520px;
         width: 520px;
         height: 100vh;
         background-color: #222;
-        transition: 1s;
+        transition:all 1s;
         &.active{
           right: 0;
-
         }
         ul{
           padding-top: 180px;
@@ -120,6 +119,24 @@ h1,h2,h3,h4,h5,h6{
             font-size: 20px;
             font-weight: 800;
             color: $font_color2;
+            span{
+              position: relative;;
+              display: block;
+              color: $key_color;
+              font-size: 42px;
+              &::before{
+                content: "";
+                position: absolute;
+                background-color: #fff;
+                top: 11px;
+                left: -8px;
+                z-index: -1;
+                width: 40px;
+                height: 40px;
+                line-height: 20px;
+                border-radius: 50%;
+              }
+            }
           }
         }
       }
